@@ -10,10 +10,10 @@ export default function reducer(state = defaultState, action) { //纯函数和�
   switch (action.type) {
     //只能接收state不能改变
     case CHANGE_INPUT:
-      return { ...state, ...{ inputValue: action.value } };
+      return { ...state, inputValue: action.value };
     case ADD_ITEM:
       //数组里添加输入的值
-      let newAddState = !state.inputValue ? state : { ...state, ...{ list: [...state.list, ...[state.inputValue]] } }
+      let newAddState = !state.value ? state : { ...state, list: [...state.list, state.value] }
       newAddState.inputValue = ''
       return newAddState
     case DELETE_ITEM:
@@ -21,7 +21,7 @@ export default function reducer(state = defaultState, action) { //纯函数和�
       newState.list.splice(action.index, 1)
       return newState
     case GETLIST:
-      return { ...state, ...{ list: [...state.list, ...action.data] } }
+      return { ...state, list: [...state.list, ...action.data]}
     default:
       return state
   }
